@@ -51,13 +51,15 @@
     </nav>
 
     <div class="content">
-        {{--{!! $content !!}--}}
+        <div id="page"></div>
     </div>
 </div>
+@include("homepage")
 @include("auth.sign-in")
-@include("auth.sign-in")
+@include("auth.sign-up")
 </body>
 
 <script src="/js/app.js"></script>
+<script src="/assets/js/main.js"></script>
 
 </html>

@@ -44,12 +44,16 @@ class Controller extends BaseController
         return $this;
     }
 
-    protected function render($name, $data = [])
+    protected function render($name = null, $data = [])
     {
         $data = array_merge($this->data, $data);
 
         if ($this->getLayout()) {
-            return $this->getLayout()->nest('content', $name, $data);
+            return $name ? $this->getLayout()->nest('content', $name, $data) : $this->getLayout();
+        }
+
+        if (!$name) {
+            throw new \Exception("No layout or view set");
         }
 
         return $this->layout = view($name, $data);
