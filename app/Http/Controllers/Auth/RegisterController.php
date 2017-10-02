@@ -28,12 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
-
-    public function indexAction()
-    {
-        return $this->render('auth/sign-up');
-    }
+    protected $redirectTo = '/';
 
     public function registerAction()
     {

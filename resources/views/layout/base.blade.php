@@ -39,10 +39,10 @@
                         </li>
                     @else
                         <li>
-                            <a href="{{ route("auth.sign-up") }}">Sign up</a>
+                            <a href="#sign-up">Sign up</a>
                         </li>
                         <li>
-                            <a href="{{ route("auth.sign-in") }}">Sign in</a>
+                            <a href="#sign-in">Sign in</a>
                         </li>
                     @endif
                 </ul>
@@ -51,9 +51,11 @@
     </nav>
 
     <div class="content">
-        {!! $content !!}
+        {{--{!! $content !!}--}}
     </div>
 </div>
+@include("auth.sign-in")
+@include("auth.sign-in")
 </body>
 
 <script src="/js/app.js"></script>

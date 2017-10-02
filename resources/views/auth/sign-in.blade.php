@@ -1,4 +1,4 @@
-<div id="sign-in" class="col-md-4">
+<template id="sign-in" class="col-md-4">
     <div class="wrap">
 
         <div class="title">
@@ -19,7 +19,7 @@
 
             <div class="form-group actions">
                 <div class="action">
-                    Don't have account? <a href="{{ route('auth.sign-up') }}">Sign up</a> now!
+                    Don't have account? <a href="#sign-up">Sign up</a> now!
                 </div>
                 <div class="action">
                     <input class="btn btn-default" type="submit" value="Sign-in">
@@ -28,10 +28,10 @@
 
             <div class="form-group actions">
                 <div class="action">
-                    Did you <a href="/auth/forgot-password">forgot password</a>?
+                    Did you <a href="#forgot-password">forgot password</a>?
                 </div>
             </div>
 
         </form>
     </div>
-</div>
+</template>

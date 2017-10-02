@@ -27,13 +27,6 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/';
 
-    public function indexAction()
-    {
-        session(['land-to' => $this->request->get('land-to')]);
-
-        return $this->render('auth/sign-in');
-    }
-
     public function loginAction()
     {
         $success = $this->attemptLogin($this->request);

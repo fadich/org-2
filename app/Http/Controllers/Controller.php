@@ -23,8 +23,9 @@ class Controller extends BaseController
 
     public function __construct(Request $request)
     {
-        $this->redirectTo = session('land-to') ?: route('home');
         $this->request = $request;
+        session(['land-to' => $this->request->get('land-to')]);
+        $this->redirectTo = session('land-to') ?: route('home');
     }
 
     public function getLayout()
