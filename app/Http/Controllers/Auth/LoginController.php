@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     public function indexAction()
     {
@@ -36,7 +36,20 @@ class LoginController extends Controller
 
     public function loginAction()
     {
-        return "Well <a href='/auth/sign-in'>Back</a>";
+        $success = $this->attemptLogin($this->request);
+
+        if (!$success) {
+            return $this->json([
+                "login" => "Incorrect login or password",
+            ], 400);
+        }
+
+        return $this->redirect();
+    }
+
+    public function username()
+    {
+        return "email";
     }
 
 }

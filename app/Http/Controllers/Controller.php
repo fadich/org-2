@@ -17,7 +17,7 @@ class Controller extends BaseController
 
     protected $layout = 'layout.base';
 
-    protected $redirectTo = "/home";
+    protected $redirectTo = "/";
 
     protected $data = [];
 

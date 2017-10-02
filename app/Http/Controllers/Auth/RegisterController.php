@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -41,14 +42,15 @@ class RegisterController extends Controller
         $errors = $this->validator($data)->errors();
 
         if (empty($errors->messages()) && $user = $this->create($data)) {
-            auth()->login($user);
+            event(new Registered($user));
+            $this->guard()->login($user);
 
             return $this->redirect();
         }
 
         return $this->json([
             "errors" => $errors,
-        ]);
+        ], 400);
     }
 
     /**

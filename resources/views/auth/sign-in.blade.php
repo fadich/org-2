@@ -10,7 +10,7 @@
             {{ csrf_field() }}
 
             <div class="form-group">
-                <input class="form-control" type="text" name="login" placeholder="Login" required>
+                <input class="form-control" type="text" name="email" placeholder="Login" required>
             </div>
 
             <div class="form-group">
