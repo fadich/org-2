@@ -5,12 +5,12 @@
             Sign in to Application
         </div>
 
-        <form action="/auth/sign-in" method="POST">
+        <form action="{{ route('auth.login') }}" method="POST">
 
             {{ csrf_field() }}
 
             <div class="form-group">
-                <input class="form-control" type="email" name="login" placeholder="Login" required>
+                <input class="form-control" type="text" name="login" placeholder="Login" required>
             </div>
 
             <div class="form-group">

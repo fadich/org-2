@@ -17,10 +17,13 @@ class Controller extends BaseController
 
     protected $layout = 'layout.base';
 
+    protected $redirectTo = "/home";
+
     protected $data = [];
 
     public function __construct(Request $request)
     {
+        $this->redirectTo = session('land-to') ?: route('home');
         $this->request = $request;
     }
 
@@ -49,6 +52,20 @@ class Controller extends BaseController
         }
 
         return $this->layout = view($name, $data);
+    }
+
+    public function redirect($to = null, $code = 302, $headers = [], $secure = null)
+    {
+        if ($to) {
+            return redirect($to, $code, $headers, $secure);
+        }
+
+        return redirect($this->redirectTo, $code, $headers, $secure);
+    }
+
+    public function json(array $data = [], $status = 200, array $headers = [], $options = 0)
+    {
+        return response()->json($data, $status, $headers, $options);
     }
 
 }

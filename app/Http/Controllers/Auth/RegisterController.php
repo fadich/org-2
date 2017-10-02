@@ -34,6 +34,23 @@ class RegisterController extends Controller
         return $this->render('auth/sign-up');
     }
 
+    public function registerAction()
+    {
+        $data = request()->all();
+
+        $errors = $this->validator($data)->errors();
+
+        if (empty($errors->messages()) && $user = $this->create($data)) {
+            auth()->login($user);
+
+            return $this->redirect();
+        }
+
+        return $this->json([
+            "errors" => $errors,
+        ]);
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -43,9 +60,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|regex:/^[\w-]*$/|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
         ]);
     }
 
