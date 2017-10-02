@@ -8,7 +8,7 @@
     <title>Application</title>
 
     <link rel="stylesheet" href="/css/app.css">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/assets/style/main.css">
 
 </head>
 <body>
