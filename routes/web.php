@@ -26,4 +26,6 @@ Route::group(["prefix" => "auth"], function () {
 
     Route::get("/sign-up", ["uses" => "Auth\RegisterController@indexAction", "as" => "auth.sign-up"])->middleware("guest");
     Route::post("/sign-up", ["uses" => "Auth\RegisterController@registerAction", "as" => "auth.register"])->middleware("guest");
+
+    Route::get("/sign-out", ["uses" => "Auth\LoginController@logoutAction", "as" => "auth.sign-out"])->middleware("auth");
 });
