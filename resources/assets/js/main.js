@@ -1,32 +1,29 @@
 ;(function () {
-    let home = {
-        template: "#homepage",
+    let homepage = {
+        template: "#app-homepage",
     };
     let signIn = {
-        template: "#sign-in",
+        template: "#app-sign-in",
     };
     let signUp = {
-        template: "#sign-up",
+        template: "#app-sign-up",
     };
 
-    const routes = {
-        '#sign-in': signIn,
-        '#sign-up': signUp,
-    };
+    const routes = [
+        { path: "/sign-in", component: signIn },
+        { path: "/sign-up", component: signUp },
+        { path: "*", component: homepage }
+    ];
 
-    let vue = new Vue({
-        el: '#page',
-        data: {
-            currentRoute: window.location.hash
-        },
-        computed: {
-            ViewComponent () {
-                return routes[this.currentRoute] || home
-            }
-        },
-        render (h) {
-            console.log(h);
-            return h(this.ViewComponent)
-        }
+    const router = new VueRouter({
+        routes // сокращение от `routes: routes`
     });
+
+    const page = new Vue({
+        router,
+        components: {
+            "page": "<router-view></router-view>",
+        }
+    }).$mount('#page')
+
 })();

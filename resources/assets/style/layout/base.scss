@@ -15,5 +15,12 @@
     display: flex;
     height: 100%;
     width: 100%;
+    padding: 60px 10px;
+  }
+
+  .navbar-crutch {
+    position: absolute;
+    width: 100%;
+    z-index: 9;
   }
 }

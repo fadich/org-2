@@ -44,7 +44,7 @@ class LoginController extends Controller
     {
         $this->guard()->logout();
 
-        return $this->redirect(route("auth.sign-in"));
+        return $this->redirect(route("home"));
     }
 
     public function username()

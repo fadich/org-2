@@ -1,4 +1,4 @@
-<template id="sign-in">
+<template id="app-sign-in">
     <div class="col-md-4 auth">
         <div class="wrap">
 
