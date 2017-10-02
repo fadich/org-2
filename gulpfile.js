@@ -11,11 +11,13 @@ let path = {
         style: 'public/assets/style/',
     },
     src: {
-        js: 'resources/assets/js/**/*.js',
+        // js: 'resources/assets/js/**/*.js',
+        js: 'resources/assets/js/main.js',
         style: 'resources/assets/style/main.scss',
     },
     watch: {
-        js: 'resources/assets/js/**/*.js',
+        // js: 'resources/assets/js/**/*.js',
+        js: 'resources/assets/js/main.js',
         style: 'resources/assets/style/**/*.scss',
     },
 };

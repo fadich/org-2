@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -27,16 +28,24 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function registerAction()
     {
-        $this->middleware('guest');
+        $data = request()->all();
+
+        $errors = $this->validator($data)->errors();
+
+        if (empty($errors->messages()) && $user = $this->create($data)) {
+            event(new Registered($user));
+            $this->guard()->login($user);
+
+            return $this->redirect();
+        }
+
+        return $this->json([
+            "errors" => $errors,
+        ], 400);
     }
 
     /**
@@ -48,9 +57,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|regex:/^[\w-]*$/|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
         ]);
     }
 

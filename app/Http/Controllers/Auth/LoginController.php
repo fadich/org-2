@@ -25,18 +25,31 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
-
-    public function indexAction()
-    {
-        session(['land-to' => $this->request->get('land-to')]);
-
-        return $this->render('auth/sign-in');
-    }
+    protected $redirectTo = '/';
 
     public function loginAction()
     {
-        return "Well <a href='/auth/sign-in'>Back</a>";
+        $success = $this->attemptLogin($this->request);
+
+        if (!$success) {
+            return $this->json([
+                "login" => "Incorrect login or password",
+            ], 400);
+        }
+
+        return $this->redirect();
+    }
+
+    public function logoutAction()
+    {
+        $this->guard()->logout();
+
+        return $this->redirect(route("home"));
+    }
+
+    public function username()
+    {
+        return "email";
     }
 
 }
