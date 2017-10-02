@@ -1,8 +1,8 @@
-<div id="sign-in" class="col-md-4">
+<div id="sign-up" class="col-md-4">
     <div class="wrap">
 
         <div class="title">
-            Sign in to Application
+            Sign up to Application
         </div>
 
         <form action="/auth/sign-in" method="POST">
@@ -14,21 +14,23 @@
             </div>
 
             <div class="form-group">
+                <input class="form-control" type="email" name="email" placeholder="Email" required>
+            </div>
+
+            <div class="form-group">
                 <input class="form-control" type="password" name="password" placeholder="Password" required>
             </div>
 
-            <div class="form-group actions">
-                <div class="action">
-                    Don't have account? <a href="{{ route('auth.sign-up') }}">Sign up</a> now!
-                </div>
-                <div class="action">
-                    <input class="btn btn-default" type="submit" value="Sign-in">
-                </div>
+            <div class="form-group">
+                <input class="form-control" type="password" placeholder="Confirm password" required>
             </div>
 
             <div class="form-group actions">
                 <div class="action">
-                    Did you <a href="/auth/forgot-password">forgot password</a>?
+                    Do you have an account? <a href="{{ route('auth.sign-in') }}">Sign in</a>
+                </div>
+                <div class="action">
+                    <input class="btn btn-default" type="submit" value="Sign-in">
                 </div>
             </div>
 

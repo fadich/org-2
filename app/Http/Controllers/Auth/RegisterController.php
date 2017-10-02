@@ -29,14 +29,9 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/home';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function indexAction()
     {
-        $this->middleware('guest');
+        return $this->render('auth/sign-up');
     }
 
     /**
