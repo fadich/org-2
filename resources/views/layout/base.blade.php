@@ -12,13 +12,21 @@
 
 </head>
 <body>
+
 <div class="wrapper">
-    <div class="content">
-        {!! $content !!}
-    </div>
+    @include("components.navbar")
+    @include("components.content")
 </div>
-</body>
+
+
+@include("components.homepage")
+@include("components.auth.sign-in")
+@include("components.auth.sign-up")
 
 <script src="/js/app.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script src="/assets/js/main.js"></script>
+</body>
+
 
 </html>
