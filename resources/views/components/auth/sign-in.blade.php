@@ -11,7 +11,7 @@
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                    <input class="form-control" type="text" name="email" placeholder="Login" required>
+                    <input class="form-control" type="text" name="email" placeholder="Login or Email" required>
                 </div>
 
                 <div class="form-group">
@@ -20,7 +20,7 @@
 
                 <div class="form-group actions">
                     <div class="action">
-                        Don't have account? <a href="#sign-up">Sign up</a> now!
+                        Don't have account? <a href="#sign-up">Sign up</a>now!
                     </div>
                     <div class="action">
                         <input class="btn btn-default" type="submit" value="Sign-in">
