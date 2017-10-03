@@ -5,6 +5,7 @@
         template: "#app-navbar",
         data: function () {
             return {
+                collapse: false,
                 items: [
                     {
                         name: "About",
@@ -14,6 +15,14 @@
                 ],
             };
         },
+        methods: {
+            toggleNav() {
+                this.collapse = !this.collapse;
+            },
+            closeNav() {
+                this.collapse = false;
+            },
+        }
     });
 
     Vue.component("app-content", {
