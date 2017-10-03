@@ -10,6 +10,8 @@
   height: 100vh;
   width: 100vw;
   background: #FFFFFF;
+  padding: 10px 0;
+  overflow: auto;
 
   .content {
     display: flex;
@@ -22,5 +24,6 @@
     position: absolute;
     width: 100%;
     z-index: 9;
+    top: 0;
   }
 }
