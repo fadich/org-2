@@ -20,7 +20,7 @@
 
                 <div class="form-group actions">
                     <div class="action">
-                        Don't have account? <a href="#sign-up">Sign up</a> now!
+                        Don't have account? <a href="#sign-up">Sign up</a>now!
                     </div>
                     <div class="action">
                         <input class="btn btn-default" type="submit" value="Sign-in">

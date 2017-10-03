@@ -15,17 +15,21 @@
 
 <div class="wrapper">
     @include("components.navbar")
-    @include("components.content")
+    <div id="page">
+        <app-content></app-content>
+    </div>
 </div>
 
-
+@include("components.content")
 @include("components.homepage")
 @include("components.auth.sign-in")
 @include("components.auth.sign-up")
+@include("components.not-found")
 
 <script src="/js/app.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 <script src="/assets/js/main.js"></script>
+
 </body>
 
 

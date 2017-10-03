@@ -28,7 +28,7 @@
 
                 <div class="form-group actions">
                     <div class="action">
-                        Do you have an account? <a href="#sign-in">Sign in</a>
+                        Do you have an account? <a href="#sign-in">Sign in</a>.
                     </div>
                     <div class="action">
                         <input class="btn btn-default" type="submit" value="Sign-up">
