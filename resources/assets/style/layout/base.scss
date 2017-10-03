@@ -1,23 +1,20 @@
 .wrapper {
-  position: absolute;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   margin: 0;
   bottom: 0;
   top: 0;
   left: 0;
   right: 0;
-  height: 100vh;
-  width: 100vw;
   background: #FFFFFF;
-  padding: 10px 0;
   overflow: auto;
+  min-height: 100vh;
 
   .content {
     display: flex;
     height: 100%;
-    width: 100%;
-    padding: 60px 10px;
+    margin: 75px 10px 40px 10px;
   }
 
   .navbar-crutch {
@@ -29,6 +26,28 @@
     .navbar-toggle {
       &:hover {
         background-color: #fff;
+      }
+    }
+  }
+
+  footer {
+    margin-bottom: 0;
+    width: 100%;
+    height: 40px;
+    background: #dfdfdf;
+    border-top: solid 1px #ccc;
+    border-radius: 1px;
+    padding: 10px 15px;
+
+    ul {
+      display: flex;
+      justify-content: space-around;
+      padding: 0 0;
+      margin: 0;
+
+      li {
+        margin: 0 15px;
+        list-style-type: none;
       }
     }
   }

@@ -29,15 +29,22 @@
         template: "#app-content",
     });
 
+    Vue.component("app-footer", {
+        template: "#app-footer",
+    });
+
     let homepage = {
         template: "#app-homepage",
     };
+
     let signIn = {
         template: "#app-sign-in",
     };
+
     let signUp = {
         template: "#app-sign-up",
     };
+
     let notFound = {
         template: "#app-not-found",
     };
