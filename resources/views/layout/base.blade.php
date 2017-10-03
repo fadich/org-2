@@ -16,10 +16,12 @@
 <div id="page" class="wrapper">
     <app-navbar v-bind:current-page="$route.path"></app-navbar>
     <app-content></app-content>
+    <app-footer></app-footer>
 </div>
 
 @include("components.navbar")
 @include("components.content")
+@include("components.footer")
 
 @include("components.homepage")
 @include("components.auth.sign-in")

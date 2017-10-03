@@ -6,24 +6,24 @@
                 Sign up to Application
             </div>
 
-            <form action="{{ route('auth.register') }}" method="POST" @keydown="errors = []">
+            <form action="{{ route('auth.register') }}" method="POST">
 
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                    <input class="form-control" type="text" name="name" placeholder="Login" v-model="login">
+                    <input class="form-control" type="text" name="name" placeholder="Login" required>
                 </div>
 
                 <div class="form-group">
-                    <input class="form-control" type="email" name="email" placeholder="Email" v-model="email">
+                    <input class="form-control" type="email" name="email" placeholder="Email" required>
                 </div>
 
                 <div class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="Password" v-model="password">
+                    <input class="form-control" type="password" name="password" placeholder="Password" required>
                 </div>
 
                 <div class="form-group">
-                    <input class="form-control" type="password" placeholder="Confirm password" v-model="confirm">
+                    <input class="form-control" type="password" placeholder="Confirm password" required>
                 </div>
 
                 <div class="form-group actions">
@@ -31,7 +31,7 @@
                         Do you have an account? <a href="#sign-in">Sign in</a>.
                     </div>
                     <div class="action">
-                        <input class="btn btn-default" type="submit" value="Sign-up" @click="submit">
+                        <input class="btn btn-default" type="submit" value="Sign-up">
                     </div>
                 </div>
 
