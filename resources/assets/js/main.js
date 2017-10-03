@@ -32,12 +32,60 @@
     let homepage = {
         template: "#app-homepage",
     };
+
     let signIn = {
         template: "#app-sign-in",
     };
+
     let signUp = {
         template: "#app-sign-up",
+        data: function () {
+            return {
+                login: "",
+                email: "",
+                password: "",
+                confirm: "",
+                errors: [],
+            };
+        },
+        methods: {
+            submit(event) {
+                this.validate();
+                if (this.errors.length < 1) {
+                    return;
+                }
+                event.preventDefault();
+                console.log(this.errors);
+                this.clearPasswords();
+            },
+            validate() {
+                this.errors = [];
+
+                if (!this.login) {
+                    this.addError("login", "Fill this field, please.");
+                }
+                if (!this.email) {
+                    this.addError("email", "Fill this field, please.");
+                }
+                if (!this.password) {
+                    this.addError("password", "Fill this field, please.");
+                }
+                if (this.confirm !== this.password) {
+                    this.addError("confirm", "Passwords are not identical.");
+                }
+
+                return this.errors;
+            },
+            addError(field, error) {
+                this.errors.push({field: field, error: error});
+            },
+            clearPasswords() {
+                this.password = "";
+                this.confirm = "";
+            }
+        }
     };
+
     let notFound = {
         template: "#app-not-found",
     };
