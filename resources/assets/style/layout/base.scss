@@ -25,5 +25,11 @@
     width: 100%;
     z-index: 9;
     top: 0;
+
+    .navbar-toggle {
+      &:hover {
+        background-color: #fff;
+      }
+    }
   }
 }
