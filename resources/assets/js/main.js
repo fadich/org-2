@@ -1,4 +1,21 @@
 ;(function () {
+
+    Vue.component("app-navbar", {
+        props: ['current-page'],
+        template: "#app-navbar",
+        data: function () {
+            return {
+                items: [
+                    {
+                        name: "About",
+                        url: "#about",
+                        alias: "/about",
+                    }
+                ],
+            };
+        },
+    });
+
     Vue.component("app-content", {
         template: "#app-content",
     });

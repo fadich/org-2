@@ -13,14 +13,14 @@
 </head>
 <body>
 
-<div class="wrapper">
-    @include("components.navbar")
-    <div id="page">
-        <app-content></app-content>
-    </div>
+<div id="page" class="wrapper">
+    <app-navbar v-bind:current-page="$route.path"></app-navbar>
+    <app-content></app-content>
 </div>
 
+@include("components.navbar")
 @include("components.content")
+
 @include("components.homepage")
 @include("components.auth.sign-in")
 @include("components.auth.sign-up")

@@ -1,5 +1,7 @@
-<template id="app-content" :key="app-content" is="app-content">
+<template id="app-content">
+
     <div class="content">
         <router-view></router-view>
     </div>
+
 </template>
