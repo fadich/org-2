@@ -28,6 +28,22 @@
 @include("components.auth.sign-up")
 @include("components.not-found")
 
+@if(auth()->user())
+    <script>
+        var __settings = {
+            user: {
+                id: "<?= auth()->user()->getAuthIdentifier() ?>",
+                name: "<?= auth()->user()->getAuthIdentifierName() ?>",
+                token: "<?= auth()->user()->getRememberToken() ?>",
+            }
+        }
+    </script>
+@else
+    <script>
+        var __settings = {  };
+    </script>
+@endif
+
 <script src="/js/app.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 <script src="/assets/js/main.js"></script>
