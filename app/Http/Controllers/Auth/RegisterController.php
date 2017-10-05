@@ -40,7 +40,9 @@ class RegisterController extends Controller
             event(new Registered($user));
             $this->guard()->login($user);
 
-            return $this->redirect();
+            return $this->json([
+                "land-to" => $this->redirectTo,
+            ]);
         }
 
         return $this->json([

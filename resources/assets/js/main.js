@@ -78,21 +78,21 @@
                     headers: {"X-CSRFToken": ''},
                 });
 
-                request.post('auth/sign-up', fd)
+                request.post('auth/sign-up' + window.location.search, fd)
                     .then(function (response) {
-
-                        // console.log(response);
-                        window.location.hash = "/";
-                        window.location.reload();
+                        window.location.replace(response.data['land-to']);
                     })
                     .catch(function (error) {
                         let errors = error.response.data.errors;
+
                         for (let key in errors) {
                             if (errors.hasOwnProperty(key)) {
                                 formErrors[key] = errors[key].pop();
                             }
                         }
-                    })
+                    });
+
+                this.clearPasswords();
             },
             validate() {
                 if (!this.name) {
