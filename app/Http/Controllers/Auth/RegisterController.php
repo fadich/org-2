@@ -40,7 +40,9 @@ class RegisterController extends Controller
             event(new Registered($user));
             $this->guard()->login($user);
 
-            return $this->redirect();
+            return $this->json([
+                "land-to" => $this->redirectTo,
+            ]);
         }
 
         return $this->json([
@@ -57,7 +59,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:64|regex:/^[\w-]*$/|unique:users',
+            'name' => 'required|string|max:64|min:4|regex:/^[\w-]*$/|unique:users',
             'email' => 'required|string|email|max:64|unique:users',
             'password' => 'required|string|min:6|max:64',
         ]);
