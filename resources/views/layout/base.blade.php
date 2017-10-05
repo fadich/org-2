@@ -28,19 +28,16 @@
 @include("components.auth.sign-up")
 @include("components.not-found")
 
+<script>
+    var __settings = {  };
+</script>
+
 @if(auth()->user())
     <script>
-        var __settings = {
-            user: {
-                id: "<?= auth()->user()->getAuthIdentifier() ?>",
-                name: "<?= auth()->user()->getAuthIdentifierName() ?>",
-                token: "<?= auth()->user()->getRememberToken() ?>",
-            }
+        __settings.user = {
+            id: "<?= auth()->user()->getAuthIdentifier() ?>",
+            token: "<?= auth()->user()->getRememberToken() ?>",
         }
-    </script>
-@else
-    <script>
-        var __settings = {  };
     </script>
 @endif
 

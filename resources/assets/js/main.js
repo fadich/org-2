@@ -39,6 +39,43 @@
 
     let signIn = {
         template: "#app-sign-in",
+        data() {
+            return {
+                login: "",
+                password: "",
+                errors: {
+                    login: "",
+                },
+            };
+        },methods: {
+            submit(ev) {
+                let formErrors = this.errors;
+                let fd = new FormData();
+
+                fd.append('login', this.login);
+                fd.append('password', this.password);
+
+                let request = axios.create({
+                    baseURL: '/',
+                    timeout: 2000,
+                    headers: {"X-CSRFToken": ''},
+                });
+
+                request.post('auth/sign-in' + window.location.search, fd)
+                    .then(function (response) {
+                        window.location.replace(response.data['land-to']);
+                    })
+                    .catch(function (error) {
+                        formErrors.login = error.response.data.errors.login;
+
+                    });
+
+                this.clearPassword();
+            },
+            clearPassword() {
+                this.password = "";
+            },
+        },
     };
 
     let signUp = {

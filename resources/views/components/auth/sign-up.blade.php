@@ -6,7 +6,7 @@
                 Sign up to Application
             </div>
 
-            <form action="{{ route('auth.register') }}" method="POST" @submit.prevent="submit">
+            <form @submit.prevent="submit">
 
                 {{ csrf_field() }}
 
@@ -15,7 +15,8 @@
                            name="name"
                            placeholder="Username"
                            v-model="name"
-                           @keydown="errors.name = ''">
+                           @keydown="errors.name = ''"
+                           required>
                     <small class="danger"><?= "{{ errors.name }}" ?></small>
                 </div>
 
@@ -25,7 +26,8 @@
                            name="email"
                            placeholder="Email"
                            v-model="email"
-                           @keydown="errors.email = ''">
+                           @keydown="errors.email = ''"
+                           required>
                     <small class="danger"><?= "{{ errors.email }}" ?></small>
                 </div>
 
@@ -35,7 +37,8 @@
                            name="password"
                            placeholder="Password"
                            v-model="password"
-                           @keydown="errors.password = ''">
+                           @keydown="errors.password = ''"
+                           required>
                     <small class="danger"><?= "{{ errors.password }}" ?></small>
                 </div>
 
@@ -44,7 +47,8 @@
                            type="password"
                            placeholder="Confirm password"
                            v-model="confirm"
-                           @keydown="errors.confirm = ''">
+                           @keydown="errors.confirm = ''"
+                           required>
                     <small class="danger"><?= "{{ errors.confirm }}" ?></small>
                 </div>
 
