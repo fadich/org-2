@@ -6,16 +6,28 @@
                 Sign in to Application
             </div>
 
-            <form action="{{ route('auth.login') }}" method="POST">
+            <form @submit.prevent="submit">
 
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                    <input class="form-control" type="text" name="email" placeholder="Login or Email" required>
+                    <input class="form-control"
+                           name="email"
+                           placeholder="Username or Email"
+                           v-model="login"
+                           @keydown="errors.login = ''"
+                           required>
                 </div>
 
                 <div class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="Password" required>
+                    <input class="form-control"
+                           type="password"
+                           name="password"
+                           placeholder="Password"
+                           v-model="password"
+                           @keydown="errors.login = ''"
+                           required>
+                    <small class="danger"><?= "{{ errors.login }}" ?></small>
                 </div>
 
                 <div class="form-group actions">

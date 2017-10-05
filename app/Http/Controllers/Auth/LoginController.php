@@ -29,15 +29,28 @@ class LoginController extends Controller
 
     public function loginAction()
     {
-        $success = $this->attemptLogin($this->request);
+        $login = $this->request->post('login');
+        if (strstr($login,"@")) {
+            $attributes["email"] = $login;
+        } else {
+            $attributes["name"] = $login;
+        }
+
+        $attributes["password"] = $this->request->post('password');
+
+        $success = auth()->attempt($attributes, true);
 
         if (!$success) {
             return $this->json([
-                "login" => "Incorrect login or password",
+                "errors" => [
+                    "login" => "Incorrect login or password",
+                ],
             ], 400);
         }
 
-        return $this->redirect();
+        return $this->json([
+            "land-to" => $this->redirectTo,
+        ]);
     }
 
     public function logoutAction()
@@ -45,11 +58,6 @@ class LoginController extends Controller
         $this->guard()->logout();
 
         return $this->redirect(route("home"));
-    }
-
-    public function username()
-    {
-        return "email";
     }
 
 }
