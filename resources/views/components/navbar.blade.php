@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a  @click="closeNav" href="#homepage" class="navbar-brand">Application</a>
+                <a  @click="closeNav" href="#homepage" class="navbar-brand">Home</a>
             </div>
             <div class="navbar-collapse" id="myNavbar" :class="{ collapse: !collapse }">
                 <ul class="nav navbar-nav">

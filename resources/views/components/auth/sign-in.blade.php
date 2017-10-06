@@ -3,7 +3,7 @@
         <div class="wrap">
 
             <div class="title">
-                Sign in to Application
+                Sign in to Royallib
             </div>
 
             <form @submit.prevent="submit">
