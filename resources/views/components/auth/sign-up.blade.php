@@ -3,7 +3,7 @@
         <div class="wrap">
 
             <div class="title">
-                Sign up to Application
+                Sign up to Royallib
             </div>
 
             <form @submit.prevent="submit">

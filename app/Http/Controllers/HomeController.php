@@ -10,7 +10,7 @@ namespace App\Http\Controllers;
 
 class HomeController extends Controller
 {
-    protected $loginPath = '/auth/sign-in?land-to=home';
+    protected $loginPath = "/auth/sign-in?land-to=home";
 
     public function indexAction()
     {
