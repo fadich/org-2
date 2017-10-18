@@ -14,20 +14,20 @@
             </div>
             <div class="navbar-collapse" id="myNavbar" :class="{ collapse: !collapse }">
                 <ul class="nav navbar-nav">
-                    <li v-for="item in items" :class="{ active: currentPage == item.url }">
+                    <li v-for="item in items" :class="{ active: currentPage == item.url }" @click="closeNav">
                         <router-link v-bind:to="item.url" @click="closeNav"><?= "{{ item.name }}" ?></router-link>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if(auth()->user())
-                        <li>
-                            <a @click="closeNav" href="{{ route("auth.sign-out") }}">Sign out</a>
+                        <li @click="closeNav">
+                            <a href="{{ route("auth.sign-out") }}">Sign out</a>
                         </li>
                     @else
-                        <li :class="{ active: currentPage == '/sign-up' }">
+                        <li :class="{ active: currentPage == '/sign-up' }" @click="closeNav">
                             <router-link to="/sign-up" @click="closeNav">Sign up</router-link>
                         </li>
-                        <li :class="{ active: currentPage == '/sign-in' }">
+                        <li :class="{ active: currentPage == '/sign-in' }" @click="closeNav">
                             <router-link to="/sign-in" @click="closeNav">Sign in</router-link>
                         </li>
                     @endif
