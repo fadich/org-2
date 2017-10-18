@@ -17,6 +17,12 @@
     margin: 75px 10px 40px 10px;
   }
 
+  .navbar .logo {
+    img {
+      max-height: 100%;
+    }
+  }
+
   .navbar-crutch {
     position: absolute;
     width: 100%;
