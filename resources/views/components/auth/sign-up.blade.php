@@ -54,7 +54,7 @@
 
                 <div class="form-group actions">
                     <div class="action">
-                        Do you have an account? <a href="#sign-in">Sign in</a>
+                        Do you have an account? <router-link to="/sign-in">Sign in</router-link>
                     </div>
                     <div class="action">
                         <input class="btn btn-default" type="submit" value="Sign-up">
