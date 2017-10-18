@@ -9,8 +9,7 @@
                 items: [
                     {
                         name: "About",
-                        url: "#about",
-                        alias: "/about",
+                        url: "/about",
                     }
                 ],
             };
@@ -172,7 +171,7 @@
     routes.push({ path: "/homepage", component: homepage });
     routes.push({ path: "*", component: notFound });
 
-    if (typeof __settings.user === "undefined") {
+    if (!__settings.hasOwnProperty('user')) {
         routes.push({path: "/sign-in", component: signIn});
         routes.push({path: "/sign-up", component: signUp});
     }

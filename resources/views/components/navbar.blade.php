@@ -8,12 +8,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a  @click="closeNav" href="#homepage" class="navbar-brand">Home</a>
+                <router-link to="/homepage" @click="closeNav" class="navbar-brand logo">
+                    <img src="/img/logo.png">
+                </router-link>
             </div>
             <div class="navbar-collapse" id="myNavbar" :class="{ collapse: !collapse }">
                 <ul class="nav navbar-nav">
-                    <li v-for="item in items" :class="{ active: currentPage == item.alias }">
-                        <a :href="item.url" @click="closeNav"><?= "{{ item.name }}" ?></a>
+                    <li v-for="item in items" :class="{ active: currentPage == item.url }">
+                        <router-link v-bind:to="item.url" @click="closeNav"><?= "{{ item.name }}" ?></router-link>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -23,10 +25,10 @@
                         </li>
                     @else
                         <li :class="{ active: currentPage == '/sign-up' }">
-                            <a @click="closeNav" href="#sign-up">Sign up</a>
+                            <router-link to="/sign-up" @click="closeNav">Sign up</router-link>
                         </li>
                         <li :class="{ active: currentPage == '/sign-in' }">
-                            <a @click="closeNav" href="#sign-in">Sign in</a>
+                            <router-link to="/sign-in" @click="closeNav">Sign in</router-link>
                         </li>
                     @endif
                 </ul>
