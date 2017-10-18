@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/assets/style/main.css">
 
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
 </head>
 <body>
 
