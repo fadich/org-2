@@ -2,7 +2,13 @@
 
 namespace App\Base;
 
-abstract class Object
+/**
+ * Trait Object
+ * @package App\Base
+ *
+ * @author Fadi Ahmad <royalfadich@gmail.com>
+ */
+trait Object
 {
     public function __get($name)
     {

@@ -2,23 +2,38 @@
 
 namespace App\TodoBundle;
 
-use App\Interfaces\EntityInterface;
+use App\Models\TodoItem;
 use App\Interfaces\RepositoryInterface;
+use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class TodoRepository
+ * @package App\TodoBundle
+ *
+ * @author Fadi Ahmad <royalfadich@gmail.com>
+ */
 class TodoRepository implements RepositoryInterface
 {
+    protected $model;
+
+    public function __construct(
+        TodoItem $todoItem
+    ) {
+        $this->model = $todoItem;
+    }
+
     /**
      * Get the entity by identifier.
      *
      * @param string|integer $id
      *   Entity identifier.
      *
-     * @return \App\Interfaces\EntityInterface|null
+     * @return \Illuminate\Database\Eloquent\Model|null
      *   Entity object.
      */
     public function get($id)
     {
-        // TODO: Implement get() method.
+        return $this->model->find($id);
     }
 
     /**
@@ -27,7 +42,7 @@ class TodoRepository implements RepositoryInterface
      * @param array|string $condition
      *   Searching criteria.
      *
-     * @return \App\Interfaces\EntityInterface[]
+     * @return \Illuminate\Database\Eloquent\Model[]
      *   List of entities.
      */
     public function find($condition)
@@ -38,12 +53,12 @@ class TodoRepository implements RepositoryInterface
     /**
      * Get all entities.
      *
-     * @return \App\Interfaces\EntityInterface[]
+     * @return \Illuminate\Database\Eloquent\Model[]
      *   List of entities.
      */
     public function findAll()
     {
-        // TODO: Implement findAll() method.
+        return $this->model->get();
     }
 
     /**
@@ -67,27 +82,50 @@ class TodoRepository implements RepositoryInterface
      *  $user2 = $ur->save($user2);
      * ```
      *
-     * @param \App\Interfaces\EntityInterface $entity
-     *   Updating entity.
+     * @param array $attributes
+     *   Updating entity attributes.
      *
-     * @return \App\Interfaces\EntityInterface
+     * @return \Illuminate\Database\Eloquent\Model|null
      *   Updating entity with updated (actual) data.
      */
-    public function save(EntityInterface $entity)
+    public function save(array $attributes)
     {
-        // TODO: Implement save() method.
+        $date = date('Y-m-d H:i:s');
+
+        $model = isset($attributes['id']) ? $this->get($attributes['id']) : new TodoItem($attributes);
+
+        $model->setAttribute('updated_at', $date);
+
+        $status = $model->getAttribute('status');
+        if (!is_int($status) && !is_string($status)) {
+            $model->setAttribute('status', TodoItem::STATUS_ACTIVE);
+        }
+
+
+        if (!$model->exists) {
+            $model->setAttribute('created_at', $date);
+            if ($model->save()) {
+                return $model;
+            }
+        }
+
+        if ($model->update($attributes)) {
+            return $model;
+        }
+
+        return null;
     }
 
     /**
      * Delete the entity.
      *
-     * @param \App\Interfaces\EntityInterface $entity
+     * @param \Illuminate\Database\Eloquent\Model $model
      *   Entity which has to be deleted.
      *
      * @return bool
      *   Result of deleting (success).
      */
-    public function delete(EntityInterface $entity)
+    public function delete(Model $model)
     {
         // TODO: Implement delete() method.
     }

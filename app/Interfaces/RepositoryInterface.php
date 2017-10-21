@@ -2,6 +2,8 @@
 
 namespace App\Interfaces;
 
+use Illuminate\Database\Eloquent\Model;
+
 /**
  * Class RepositoryInterface
  * @package App\Interfaces
@@ -18,7 +20,7 @@ interface RepositoryInterface
      * @param string|integer $id
      *   Entity identifier.
      *
-     * @return \App\Interfaces\EntityInterface|null
+     * @return \Illuminate\Database\Eloquent\Model|null
      *   Entity object.
      */
     public function get($id);
@@ -29,7 +31,7 @@ interface RepositoryInterface
      * @param array|string $condition
      *   Searching criteria.
      *
-     * @return \App\Interfaces\EntityInterface[]|\Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Database\Eloquent\Model[]|\Illuminate\Database\Eloquent\Collection
      *   List of entities.
      */
     public function find($condition);
@@ -37,7 +39,7 @@ interface RepositoryInterface
     /**
      * Get all entities.
      *
-     * @return \App\Interfaces\EntityInterface[]|\Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Database\Eloquent\Model[]|\Illuminate\Database\Eloquent\Collection
      *   List of entities.
      */
     public function findAll();
@@ -63,22 +65,22 @@ interface RepositoryInterface
      *  $user2 = $ur->save($user2);
      * ```
      *
-     * @param \App\Interfaces\EntityInterface $entity
-     *   Updating entity.
+     * @param array $attributes
+     *   Updating entity attributes.
      *
-     * @return \App\Interfaces\EntityInterface
+     * @return \Illuminate\Database\Eloquent\Model|null
      *   Updating entity with updated (actual) data.
      */
-    public function save(EntityInterface $entity);
+    public function save(array $attributes);
 
     /**
      * Delete the entity.
      *
-     * @param \App\Interfaces\EntityInterface $entity
+     * @param \Illuminate\Database\Eloquent\Model $model
      *   Entity which has to be deleted.
      *
      * @return bool
      *   Result of deleting (success).
      */
-    public function delete(EntityInterface $entity);
+    public function delete(Model $model);
 }
