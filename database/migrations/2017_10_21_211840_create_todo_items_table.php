@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTodoItemTable extends Migration
+class CreateTodoItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTodoItemTable extends Migration
      */
     public function up()
     {
-        Schema::create('todo_item', function (Blueprint $table) {
+        Schema::create('todo_items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->string('content');
