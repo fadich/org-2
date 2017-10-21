@@ -29,7 +29,7 @@ interface RepositoryInterface
      * @param array|string $condition
      *   Searching criteria.
      *
-     * @return \App\Interfaces\EntityInterface[]
+     * @return \App\Interfaces\EntityInterface[]|\Illuminate\Database\Eloquent\Collection
      *   List of entities.
      */
     public function find($condition);
@@ -37,7 +37,7 @@ interface RepositoryInterface
     /**
      * Get all entities.
      *
-     * @return \App\Interfaces\EntityInterface[]
+     * @return \App\Interfaces\EntityInterface[]|\Illuminate\Database\Eloquent\Collection
      *   List of entities.
      */
     public function findAll();
