@@ -27,3 +27,7 @@ Route::group(["prefix" => "auth"], function () {
 
     Route::get("/sign-out", ["uses" => "Auth\LoginController@logoutAction", "as" => "auth.sign-out"])->middleware("auth");
 });
+
+Route::group(["prefix" => "todo"], function () {
+    Route::get("/", ["uses" => "Todo\TodoController@indexAction", "as" => "todo.all"]);
+});
