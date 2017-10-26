@@ -39,26 +39,34 @@ class TodoRepository implements RepositoryInterface
     /**
      * Get entities array by condition.
      *
-     * @param array|string $condition
+     * @param array|string $conditions
      *   Searching criteria.
+     *
+     * @param integer $limit
+     * @param integer $offset
      *
      * @return \Illuminate\Database\Eloquent\Model[]
      *   List of entities.
      */
-    public function find($condition)
+    public function find($conditions, $limit = null, $offset = null)
     {
-        // TODO: Implement find() method.
+        return $this->model
+            ->limit($limit)
+            ->offset($offset)
+            ->where($conditions)
+            ->get();
     }
 
     /**
      * Get all entities.
      *
-     * @return \Illuminate\Database\Eloquent\Model[]
-     *   List of entities.
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model[] List of entities.
+     * List of entities.
      */
     public function findAll()
     {
-        return $this->model->get();
+        return $this->model
+            ->get();
     }
 
     /**
@@ -94,6 +102,10 @@ class TodoRepository implements RepositoryInterface
 
         $model = isset($attributes['id']) ? $this->get($attributes['id']) : new TodoItem($attributes);
 
+        if (!$model) {
+            return null;
+        }
+
         $model->setAttribute('updated_at', $date);
 
         $status = $model->getAttribute('status');
@@ -127,7 +139,7 @@ class TodoRepository implements RepositoryInterface
      */
     public function delete(Model $model)
     {
-        // TODO: Implement delete() method.
+        return $model->setAttribute('status', TodoItem::STATUS_DELETED)->save();
     }
 
 }

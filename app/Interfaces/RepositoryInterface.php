@@ -28,19 +28,22 @@ interface RepositoryInterface
     /**
      * Get entities array by condition.
      *
-     * @param array|string $condition
+     * @param array|string $conditions
      *   Searching criteria.
      *
-     * @return \Illuminate\Database\Eloquent\Model[]|\Illuminate\Database\Eloquent\Collection
+     * @param integer $limit
+     * @param integer $offset
+     *
+     * @return \Illuminate\Database\Eloquent\Model[]
      *   List of entities.
      */
-    public function find($condition);
+    public function find($conditions, $limit = null, $offset = null);
 
     /**
      * Get all entities.
      *
-     * @return \Illuminate\Database\Eloquent\Model[]|\Illuminate\Database\Eloquent\Collection
-     *   List of entities.
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model[] List of entities.
+     * List of entities.
      */
     public function findAll();
 

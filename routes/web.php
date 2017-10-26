@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get("/", ["uses" => "HomeController@indexAction", "as" => "home"]);
 
 Route::get("/login", function (){
-    return redirect(route("auth.sign-in", ["land-to" => "home"]));
+    return redirect("/#sign-in?land-to=home");
 })->name("login")->middleware("guest");
 
 
@@ -30,4 +30,7 @@ Route::group(["prefix" => "auth"], function () {
 
 Route::group(["prefix" => "todo"], function () {
     Route::get("/", ["uses" => "Todo\TodoController@indexAction", "as" => "todo.all"]);
+    Route::put("/item", ["uses" => "Todo\TodoController@itemAction", "as" => "todo.item.create"]);
+    Route::put("/item/{id}", ["uses" => "Todo\TodoController@itemAction", "as" => "todo.item.update"]);
+    Route::delete("/item/{id}", ["uses" => "Todo\TodoController@deleteAction", "as" => "todo.item.delete"]);
 });
