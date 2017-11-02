@@ -47,9 +47,13 @@ class LoginController extends Controller
                 ],
             ], 400);
         }
+        $landTo = $this->redirectTo;
+        if (strstr($this->redirectTo, "http")) {
+            $landTo = $this->redirectTo . "?laravel_session=" . session()->getId();
+        }
 
         return $this->json([
-            "land-to" => $this->redirectTo,
+            "land-to" => $landTo,
         ]);
     }
 
