@@ -16,7 +16,7 @@ class Cors
     public function handle($request, Closure $next)
     {
         return $next($request)
-            ->header('Access-Control-Allow-Origin', 'http://localhost:8080')
+            ->header('Access-Control-Allow-Origin', env('TODO_LIST_ADDR'))
             // Depending of your application you can't use '*'
             // Some security CORS concerns
             //->header('Access-Control-Allow-Origin', '*')
