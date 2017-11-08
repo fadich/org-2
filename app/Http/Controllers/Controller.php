@@ -21,11 +21,21 @@ class Controller extends BaseController
 
     protected $data = [];
 
+    protected $headers = [];
+
     public function __construct(Request $request)
     {
         $this->request = $request;
-        session(['land-to' => $this->request->get('land-to')]);
-        $this->redirectTo = session('land-to') ?: route('home');
+
+        session()->setId($this->request->header('Authorization'));
+
+        $landTo = $this->request->get('land-to') ?: $this->request->session()->get('land-to');
+
+        if ($landTo) {
+            $this->request->session()->put('land-to', $landTo);
+        }
+
+        $this->redirectTo = $landTo ?: route('home');
     }
 
     public function getLayout()
@@ -70,7 +80,23 @@ class Controller extends BaseController
 
     public function json(array $data = [], $status = 200, array $headers = [], $options = 0)
     {
-        return response()->json($data, $status, $headers, $options);
+        return response()
+            ->json($data, $status, $headers, $options)
+            ->withHeaders($this->setHeaders()->getHeaders());
+    }
+
+    public function setHeaders(array $headers = [])
+    {
+        foreach ($headers as $key => $value) {
+            $this->headers[$key] = $value;
+        }
+
+        return $this;
+    }
+
+    public function getHeaders()
+    {
+        return $this->headers;
     }
 
 }
