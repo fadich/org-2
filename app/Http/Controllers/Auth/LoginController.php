@@ -30,8 +30,8 @@ class LoginController extends Controller
 
     public function indexAction()
     {
-        if (Auth::id()) {
-            return $this->redirect($this->getLandTo());
+        if (Auth::check()) {
+            return $this->redirect($this->redirectTo);
         }
 
         return $this->redirect('/#/sign-in');
@@ -59,7 +59,7 @@ class LoginController extends Controller
         }
 
         return $this->json([
-            "land-to" => $this->getLandTo(),
+            "land-to" => $this->redirectTo,
         ]);
     }
 
@@ -68,16 +68,6 @@ class LoginController extends Controller
         $this->guard()->logout();
 
         return $this->redirect(route("home"));
-    }
-
-    protected function getLandTo()
-    {
-        $landTo = $this->redirectTo;
-        if (strstr($this->redirectTo, "http") && !strstr($this->redirectTo, env('APP_URL'))) {
-            $landTo = $this->redirectTo . "?laravel_session=" . session()->getId();
-        }
-
-        return $landTo;
     }
 
 }
