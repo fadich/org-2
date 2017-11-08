@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -27,6 +28,15 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/';
 
+    public function indexAction()
+    {
+        if (Auth::id()) {
+            return $this->redirect($this->getLandTo());
+        }
+
+        return $this->redirect('/#/sign-in');
+    }
+
     public function loginAction()
     {
         $login = $this->request->post('login');
@@ -47,13 +57,9 @@ class LoginController extends Controller
                 ],
             ], 400);
         }
-        $landTo = $this->redirectTo;
-        if (strstr($this->redirectTo, "http")) {
-            $landTo = $this->redirectTo . "?laravel_session=" . session()->getId();
-        }
 
         return $this->json([
-            "land-to" => $landTo,
+            "land-to" => $this->getLandTo(),
         ]);
     }
 
@@ -62,6 +68,16 @@ class LoginController extends Controller
         $this->guard()->logout();
 
         return $this->redirect(route("home"));
+    }
+
+    protected function getLandTo()
+    {
+        $landTo = $this->redirectTo;
+        if (strstr($this->redirectTo, "http") && !strstr($this->redirectTo, env('APP_URL'))) {
+            $landTo = $this->redirectTo . "?laravel_session=" . session()->getId();
+        }
+
+        return $landTo;
     }
 
 }
