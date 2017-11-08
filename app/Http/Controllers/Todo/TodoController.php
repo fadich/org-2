@@ -37,7 +37,7 @@ class TodoController extends Controller
 
     public function indexAction(Request $request)
     {
-        if (!Auth::id()) {
+        if (!Auth::check()) {
             return $this->json([
                 "errors" => ["Not authorized"],
             ], 403);
@@ -75,7 +75,7 @@ class TodoController extends Controller
 
     public function itemAction(Request $request, $id)
     {
-        if (!Auth::id()) {
+        if (!Auth::check()) {
             return $this->json([
                 "errors" => ["Not authorized"],
             ], 403);
@@ -107,7 +107,7 @@ class TodoController extends Controller
 
     public function deleteAction(Request $request, $id)
     {
-        if (!Auth::id()) {
+        if (!Auth::check()) {
             return $this->json([
                 "errors" => ["Not authorized"],
             ], 403);
