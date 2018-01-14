@@ -48,8 +48,8 @@ Route::group(["prefix" => "todo"], function () {
 });
 
 Route::group(["prefix" => "storage"], function () {
-    Route::get("/", ["uses" => "Storage\StorageController@readAction", "as" => "storage.read"]);
-//        ->middleware("ajax")->middleware("cors");
-    Route::put("/", ["uses" => "Storage\StorageController@writeAction", "as" => "storage.write"])
+    Route::get("/", ["uses" => "Storage\StorageController@readAction", "as" => "storage.read"])
+        ->middleware("ajax")->middleware("cors");
+    Route::post("/", ["uses" => "Storage\StorageController@writeAction", "as" => "storage.write"])
         ->middleware("ajax")->middleware("cors");
 });
