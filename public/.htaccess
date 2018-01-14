@@ -20,7 +20,7 @@
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
 #    Header set Access-Control-Allow-Origin "https://todo.org.royallib.pw/"
-    Header set Access-Control-Allow-Origin "https://notes.royallib.pw/"
+    Header set Access-Control-Allow-Origin "https://notes.royallib.pw"
 
     Header set Access-Control-Allow-Credentials "true"
     Header set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
